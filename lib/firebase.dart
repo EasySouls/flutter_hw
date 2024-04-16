@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_hw/services/auth_service.dart';
+import 'package:flutter_hw/services/firestore_service.dart';
+import 'package:flutter_hw/services/media_service.dart';
 import 'package:flutter_hw/services/navigation_service.dart';
+import 'package:flutter_hw/services/storage_service.dart';
 import 'package:flutter_hw/services/toast_service.dart';
 import 'package:get_it/get_it.dart';
 
@@ -22,5 +25,14 @@ Future<void> registerServices() async {
   );
   getIt.registerSingleton<ToastService>(
     ToastService(),
+  );
+  getIt.registerSingleton<MediaService>(
+    MediaService(),
+  );
+  getIt.registerSingleton<StorageService>(
+    StorageService(),
+  );
+  getIt.registerSingleton<FirestoreService>(
+    FirestoreService(),
   );
 }

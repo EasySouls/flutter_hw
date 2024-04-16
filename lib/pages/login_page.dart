@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_hw/components/custom_form_field.dart';
 import 'package:flutter_hw/consts.dart';
 import 'package:flutter_hw/services/auth_service.dart';
@@ -140,16 +141,21 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _signUpText() {
-    return const Expanded(
+    return Expanded(
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text("Don't have an account?"),
-          Text(
-            "Sign up",
-            style: TextStyle(fontWeight: FontWeight.w800),
+          const Text("Don't have an account?"),
+          GestureDetector(
+            onTap: () {
+              _navigationService.pushNamed("/register");
+            },
+            child: const Text(
+              "Sign up",
+              style: TextStyle(fontWeight: FontWeight.w800),
+            ),
           )
         ],
       ),

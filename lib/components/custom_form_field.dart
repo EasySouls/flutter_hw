@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomFormField extends StatelessWidget {
   final String label;
   final double height;
-  final RegExp validationRegex;
+  final RegExp? validationRegex;
   final bool obscureText;
   final void Function(String?) onSaved;
 
@@ -11,8 +11,8 @@ class CustomFormField extends StatelessWidget {
     super.key,
     required this.label,
     required this.height,
-    required this.validationRegex,
     required this.onSaved,
+    this.validationRegex,
     this.obscureText = false,
   });
 
@@ -24,7 +24,10 @@ class CustomFormField extends StatelessWidget {
         onSaved: onSaved,
         obscureText: obscureText,
         validator: (value) {
-          if (value != null && validationRegex.hasMatch(value)) {
+          if (validationRegex == null) {
+            return null;
+          }
+          if (value != null && validationRegex!.hasMatch(value)) {
             return null;
           }
           return "Enter a valid ${label.toLowerCase()}";
